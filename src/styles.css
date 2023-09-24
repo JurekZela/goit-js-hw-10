@@ -47,6 +47,18 @@ h2 {
     list-style: none;
     display: flex;
 }
+
+.text_temp {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.33;
+}
+
+.temp {
+    display: flex;
+    gap: 5px;
+}
+
 .loader {
     width: 48px;
     height: 48px;
