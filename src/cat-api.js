@@ -21,12 +21,12 @@ export function fetchBreeds(){
 
 export function fetchCatByBreed (breedId) {
     const url = `${BASE_URL}/images/search?breed_ids=${breedId}`;
-    
+
     return  fetch(url)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(response.status);
+    .then(result => {
+        if (!result.ok) {
+            throw new Error(result.status);
         };
-        return response.json();
+        return result.json();
     })
 };
