@@ -2,7 +2,6 @@ import SlimSelect from 'slim-select'
 import 'slim-select/dist/slimselect.css';
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
 import './css/styles.css';
-
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const refBreedSelect = document.querySelector('.breed-select')
@@ -36,12 +35,8 @@ function onCreateCard(e) {
 function onError() {
   refLoader.style.display = "none";
   refCatInfo.innerHTML = '';
-  Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!', {
-    position: 'left-bottom',
-    width: '400px',
-    borderRadius: '8px',
-    fontSize: '24px',
-});
+
+  Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!');
 };
 
 function createCardBreeds(breeds) {
@@ -71,4 +66,6 @@ fetchBreeds().then(
       select: refBreedSelect,
   });
   })
-  .catch(() => {onError()});
+  .catch(() => {
+    onError()
+  });
