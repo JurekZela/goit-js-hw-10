@@ -42,18 +42,18 @@ function onError() {
   });
 };
 
-function createCardBreeds(breeds) {
 
-  return  breeds.map(({ url, name, description, temperament }) => {
-    return `<li class = "card">
-    <img class="image" src="${url}" alt="${name}"/>
-    <div class = "block-cat-info">
+function createCardBreeds(data) {  
+return data.map(({ url, breeds:{[0]:{name}, [0]:{temperament}, [0]:{description}} }) => {
+  return `<li class = "card">
+  <img class="image" src="${url}" alt="${name}"/>
+  <div class = "block-cat-info">
     <h2>${name}</h2>
     <p class ="desc">${description}</p>
     <p class ="temp"><span class="text_temp">Temperament:</span> ${temperament}</p>
-    </div>
-    </li>`
-  }).join('')
+   </div>
+</li>`
+ })
 };
 
 fetchBreeds().then(

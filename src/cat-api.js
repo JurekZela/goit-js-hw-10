@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = 'https://api.thecatapi.com/v1';
 
-axios.defaults.headers.common["x-api-key"] = "live_MXi5doRNd1frIwcTUSayHMbUzMu4g8g8BHMhu0kMWmQAFAOGRfjnD7G5rfdmtWET";
+const api_key = axios.defaults.headers.common["x-api-key"] = "live_MXi5doRNd1frIwcTUSayHMbUzMu4g8g8BHMhu0kMWmQAFAOGRfjnD7G5rfdmtWET";
 
 const searchParams = new URLSearchParams({
     limit: 40,
@@ -20,7 +20,7 @@ export function fetchBreeds(){
 };
 
 export function fetchCatByBreed (breedId) {
-    const url = `${BASE_URL}/images/search?breed_ids=${breedId}`;
+    const url = `${BASE_URL}/images/search?api_key=${api_key}&breed_ids=${breedId}&limit=1`;
 
     return  fetch(url)
     .then(result => {
