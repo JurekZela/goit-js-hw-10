@@ -36,7 +36,10 @@ function onError() {
   refLoader.style.display = "none";
   refCatInfo.innerHTML = '';
 
-  Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!');
+  Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!',  {
+    position: 'left-bottom',
+    width: '400px',
+  });
 };
 
 function createCardBreeds(breeds) {
