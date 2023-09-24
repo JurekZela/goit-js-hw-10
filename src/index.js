@@ -44,7 +44,7 @@ function onError() {
 
 
 function createCardBreeds(data) {  
-return data.map(({ url, breeds:{[0]:{name}, [0]:{temperament}, [0]:{description}} }) => {
+return data.map(({ url, breeds:{ [0]:{name}, [0]:{temperament}, [0]:{description}} }) => {
   return `<li class = "card">
   <img class="image" src="${url}" alt="${name}"/>
   <div class = "block-cat-info">

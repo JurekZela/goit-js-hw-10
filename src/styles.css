@@ -18,13 +18,14 @@ h2 {
 
 .image {
     display: block;
-    max-width: 100%;
+    max-width: 600px;
+    width: 100%;
     height: auto;
     border: 1px solid #0d161b;
 }
 
 .cat-info {
-    width: 600px;
+    width: 1200px;
 }
 
 .breed-select {
@@ -37,9 +38,7 @@ h2 {
 }
 
 .block-cat-info {
-    margin-top: 20px;
-    padding: 20px;
-    gap: 40px;
+margin-left: 10px;
 }
 
 .card {
