@@ -1,43 +1,51 @@
+import SlimSelect from 'slim-select'
+import 'slim-select/dist/slimselect.css';
 import { fetchBreeds, fetchCatByBreed } from "./cat-api";
 import './css/styles.css';
 
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 const refBreedSelect = document.querySelector('.breed-select')
 const refCatInfo = document.querySelector('.cat-info');
-const refError = document.querySelector('.error');
+const refLoader = document.querySelector('.loader');
 
-refError.style.display = "none";
+refLoader.style.display = "none";
 
 refBreedSelect.addEventListener('change', onCreateCard);
 
 function onCreateCard(e) {
   const targetSelectValue = e.target.value;
-
+  refLoader.style.display = "block";
+ 
   return fetchCatByBreed(targetSelectValue)
   .then(cat => {
+   
     const markup = createCardBreeds(cat);
     refCatInfo.innerHTML = '';
+
     if (!markup.textContent) {
       refCatInfo.insertAdjacentHTML("beforeend",  markup);
+      refLoader.style.display = "none";
     }
   })
   .catch(() => {
     onError()
-  });
+  })
 };
-
-function onLoader() {
-  const refLoader = document.querySelector('.loader');
-
-  refLoader.classList.remove('loader');
-};
-onLoader()
 
 function onError() {
-  refError.style.display = "block";
-  refBreedSelect.style.display = "none";
+  refLoader.style.display = "none";
+  refCatInfo.innerHTML = '';
+  Notify.failure('Oops! Something went wrong! Try reloading the page or select another cat breed!', {
+    position: 'left-bottom',
+    width: '400px',
+    borderRadius: '8px',
+    fontSize: '24px',
+});
 };
 
 function createCardBreeds(breeds) {
+
   return  breeds.map(({ url, name, description, temperament }) => {
     return `<li class = "card">
     <img class="image" src="${url}" alt="${name}"/>
@@ -58,7 +66,9 @@ fetchBreeds().then(
       option.textContent = breed.name;
       refBreedSelect.append(option);
     })
-  })
-  .catch((err) => {
-    console.log(err.message);
+
+    new SlimSelect({
+      select: refBreedSelect,
   });
+  })
+  .catch(() => {onError()});
