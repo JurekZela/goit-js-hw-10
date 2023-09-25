@@ -4,12 +4,8 @@ const BASE_URL = 'https://api.thecatapi.com/v1';
 
 const api_key = axios.defaults.headers.common["x-api-key"] = "live_MXi5doRNd1frIwcTUSayHMbUzMu4g8g8BHMhu0kMWmQAFAOGRfjnD7G5rfdmtWET";
 
-const searchParams = new URLSearchParams({
-    limit: 40,
-});
-
 export function fetchBreeds(){
-    const url = `${BASE_URL}/breeds?${searchParams}`;
+    const url = `${BASE_URL}/breeds`;
     return fetch(url)
     .then(response => {
         if (!response.ok) {
